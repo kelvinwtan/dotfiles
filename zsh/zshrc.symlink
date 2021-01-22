@@ -24,6 +24,9 @@ compinit -C
 
 DISABLE_MAGIC_FUNCTIONS=true
 
+# load antibody plugins
+source ~/.zsh_plugins.sh
+
 # fix zsh-syntax-highlighting bug w/ antibody
 unset X_ZSH_HIGHLIGHT_DIRS_BLACKLIST
 

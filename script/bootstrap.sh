@@ -9,6 +9,7 @@ brew_add grep
 brew_add vim
 brew_add wget
 brew_add zsh
+brew_add yarn
 
 brew tap homebrew/cask
 

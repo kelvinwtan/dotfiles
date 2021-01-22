@@ -95,6 +95,7 @@ module.exports = {
     'hyper-font-ligatures',
     'hyper-active-tab',
     'hyper-search',
+    "hyper-electron-highlighter"
   ],
 
   localPlugins: [],

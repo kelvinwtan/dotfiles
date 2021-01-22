@@ -13,6 +13,7 @@ brew_add zsh
 brew tap homebrew/cask
 
 CASKS=(
+  font-roboto-mono-nerd-font
   starship
   visual-studio-code
 )
@@ -20,3 +21,6 @@ CASKS=(
 brew cask install ${CASKS[@]}
 
 brew cleanup
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+

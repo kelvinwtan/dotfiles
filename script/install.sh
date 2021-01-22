@@ -102,12 +102,5 @@ else
   fail "error installing dependencies"
 fi
 
-# zsh="$(find_zsh)"
-# test -z "$TRAVIS_JOB_ID" &&
-#   test "$(expr "$SHELL" : '.*/\(.*\)')" != "zsh" &&
-#   command -v chsh >/dev/null 2>&1 &&
-#   chsh -s "$zsh" &&
-#   success "set $("$zsh" --version) at $zsh as default shell"
-
 echo ''
 echo '  All installed!'

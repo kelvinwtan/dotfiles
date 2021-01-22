@@ -25,10 +25,5 @@ git pull --rebase --stat updates "$(git rev-parse --abbrev-ref HEAD)"
 echo "› $DOTFILES/script/install.sh"
 "$DOTFILES/script/install.sh"
 
-if command -v antibody >/dev/null 2>&1; then
-  echo "› antibody update"
-  antibody update
-fi
-
 echo "› registering last update"
 git config --global dotfiles.lastupdate "$(date +%Y%m%d%H%M)"

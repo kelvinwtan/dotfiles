@@ -19,12 +19,7 @@ git remote add updates https://github.com/kelvinwtan/dotfiles.git 2>/dev/null
 
 # Update repo
 echo "› git update"
-# git pull --rebase --stat updates "$(git rev-parse --abbrev-ref HEAD)"
 git pull --rebase --stat
-
-# # Run all installs
-# echo "› $DOTFILES/script/install.sh"
-# "$DOTFILES/script/install.sh"
 
 echo "› registering last update"
 git config --global dotfiles.lastupdate "$(date +%Y%m%d%H%M)"

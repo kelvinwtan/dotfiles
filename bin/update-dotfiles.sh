@@ -15,7 +15,7 @@ PATH="$(command -p getconf PATH):/usr/local/bin"
 
 # ssh would not work under cron, add a https one
 echo "› setting up update channel"
-git remote add updates https://github.com/harryparkdotio/dotfiles.git 2>/dev/null
+git remote add updates https://github.com/kelvinwtan/dotfiles.git 2>/dev/null
 
 # Update repo
 echo "› git update"

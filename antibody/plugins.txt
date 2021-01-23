@@ -1,6 +1,0 @@
-# ohmyzsh
-ohmyzsh/ohmyzsh path:lib
-ohmyzsh/ohmyzsh path:plugins/git
-
-# should be last!
-zsh-users/zsh-syntax-highlighting

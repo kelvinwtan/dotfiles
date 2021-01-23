@@ -5,6 +5,10 @@ module.exports = {
 
     updateChannel: 'stable',
 
+    fontFamily: '"RobotoMono Nerd Font"',
+
+    fontSize: 14,
+    
     verminal: {
       fontFamily: '"RobotoMono Nerd Font"',
       fontSize: 14
@@ -89,7 +93,6 @@ module.exports = {
   },
   
   plugins: [
-    'verminal',
     'hypercwd',
     'hyper-search',
     'hyper-font-ligatures',

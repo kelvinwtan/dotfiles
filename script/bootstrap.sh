@@ -10,16 +10,18 @@ brew_add vim
 brew_add wget
 brew_add zsh
 brew_add yarn
+brew_add starship
+brew_add fzf
 
 brew tap homebrew/cask
 
 CASKS=(
-  font-roboto-mono-nerd-font
-  starship
   visual-studio-code
 )
 
 brew cask install ${CASKS[@]}
+
+brew install --cask font-roboto-mono-nerd-font
 
 brew cleanup
 

@@ -24,9 +24,6 @@ compinit -C
 
 DISABLE_MAGIC_FUNCTIONS=true
 
-# fix zsh-syntax-highlighting bug w/ antibody
-unset X_ZSH_HIGHLIGHT_DIRS_BLACKLIST
-
 # load everything except the path files
 for file in ${config_files:#*/path.zsh}; do
   source "$file"

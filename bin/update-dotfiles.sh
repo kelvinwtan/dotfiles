@@ -13,13 +13,13 @@ PATH="$(command -p getconf PATH):/usr/local/bin"
 # load custom config if any
 [ -f ~/.localrc ] && . ~/.localrc
 
-# ssh would not work under cron, add a https one
-echo "› setting up update channel"
-git remote add updates https://github.com/kelvinwtan/dotfiles.git 2>/dev/null
+# # ssh would not work under cron, add a https one
+# echo "› setting up update channel"
+# git remote add updates https://github.com/kelvinwtan/dotfiles.git 2>/dev/null
 
-# Update repo
-echo "› git update"
-git pull --rebase --stat
+# # Update repo
+# echo "› git update"
+# git pull --rebase --stat
 
 echo "› registering last update"
 git config --global dotfiles.lastupdate "$(date +%Y%m%d%H%M)"

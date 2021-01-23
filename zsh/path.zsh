@@ -6,6 +6,6 @@ PATH=$PATH:/usr/local/bin
 PATH=$PATH:/usr/sbin
 PATH=$PATH:/sbin
 PATH=$PATH:/dotenv/scripts
-PATH=$PATH:$DOTFILES/bin:$HOME/bin
+PATH=$PATH:$DOTFILES/bin
 
 export PATH

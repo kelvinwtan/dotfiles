@@ -2,12 +2,5 @@
 ohmyzsh/ohmyzsh path:lib
 ohmyzsh/ohmyzsh path:plugins/git
 
-MichaelAquilina/zsh-you-should-use
-zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
-
-# theme
-tylerreckart/hyperzsh path:hyperzsh.zsh-theme
-
 # should be last!
 zsh-users/zsh-syntax-highlighting

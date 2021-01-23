@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATH=$PATH:/bin
+PATH=/bin
 PATH=$PATH:/usr/bin
 PATH=$PATH:/usr/local/bin
 PATH=$PATH:/usr/sbin

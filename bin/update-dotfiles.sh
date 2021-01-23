@@ -21,10 +21,5 @@ git remote add updates https://github.com/kelvinwtan/dotfiles.git 2>/dev/null
 echo "› git update"
 git pull --rebase --stat
 
-if command -v antibody >/dev/null 2>&1; then
-  echo "› antibody update"
-  antibody update
-fi
-
 echo "› registering last update"
 git config --global dotfiles.lastupdate "$(date +%Y%m%d%H%M)"

@@ -12,6 +12,7 @@ brew_add zsh
 brew_add yarn
 brew_add starship
 brew_add fzf
+brew_add tree
 
 brew tap homebrew/cask
 

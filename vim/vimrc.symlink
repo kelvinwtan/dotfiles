@@ -21,7 +21,7 @@ Plugin 'zxqfl/tabnine-vim'
 Plugin 'prettier/vim-prettier'
 Plugin 'eslint/eslint'
 Plugin 'vim-syntastic/syntastic'
-
+Plugin 'tpope/vim-surround'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 

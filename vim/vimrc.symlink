@@ -17,7 +17,31 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'fatih/vim-go'
-" Plugin 'zxqfl/tabnine-vim'
+Plugin 'zxqfl/tabnine-vim'
+Plugin 'prettier/vim-prettier'
+Plugin 'eslint/eslint'
+Plugin 'vim-syntastic/syntastic'
+
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
+" React
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'alvan/vim-closetag'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'MaxMEllon/vim-jsx-pretty'
+
 call vundle#end()
 
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
 syntax on
+
+nnoremap <Tab> <C-^><CR>
+command F Files

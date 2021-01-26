@@ -1,2 +1,2 @@
 alias t="tree"
-alias v="vim $(fzf)"
+alias F='vim $(fzf)'

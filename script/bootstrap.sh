@@ -13,6 +13,7 @@ brew_add yarn
 brew_add starship
 brew_add fzf
 brew_add tree
+brew_add ripgrep
 
 brew tap homebrew/cask
 

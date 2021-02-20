@@ -1,45 +1,178 @@
-filetype plugin indent on
-set nocompatible
-set esckeys
-set backspace=indent,eol,start
-set number
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set title
-set showmode
-set ruler
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'preservim/nerdtree'
-Plugin 'fatih/vim-go'
-Plugin 'zxqfl/tabnine-vim'
-Plugin 'prettier/vim-prettier'
-Plugin 'eslint/eslint'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'tpope/vim-surround'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-
-" React
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'alvan/vim-closetag'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'MaxMEllon/vim-jsx-pretty'
-
-call vundle#end()
-
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
-
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
+call plug#begin()
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'cespare/vim-toml'
+Plug 'jparise/vim-graphql'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'morhetz/gruvbox'
+Plug 'vim-ruby/vim-ruby'
+Plug 'rust-lang/rust.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-commentary'
+call plug#end()
 syntax on
 
+" Make fzf full-screen
+let g:fzf_layout = { 'down': '~100%' }
+" These will be installed when vim is next opened.
+let g:coc_global_extensions = [
+\  'coc-rls',
+\  'coc-highlight',
+\  'coc-snippets',
+\  'coc-tsserver',
+\  'coc-graphql',
+\  'coc-prettier',
+\  'coc-git',
+\  'coc-go',
+\  'coc-sh',
+\  'coc-eslint',
+\  'coc-yaml',
+\  'coc-json',
+\  'coc-toml',
+\ ]
+ " Rebind this to not conflict with CoC
+let g:UltiSnipsExpandTrigger="<c-tab>"
+" vim doesn't play nice with kitty. This is here to avoid drama.
+let &t_ut=''
+" Preview window for :Files command
+command! -bang -nargs=? -complete=dir Files
+ \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+" Just lightline things
+set noshowmode
+let g:lightline = {
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'filename', 'method' ]
+  \   ],
+  \   'right':[
+  \     [ 'filetype', 'fileencoding' ],
+  \     [ 'cocstatus' ]
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'blame': 'LightlineGitBlame',
+  \   'cocstatus': 'coc#status'
+  \ }
+\ }
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  return winwidth(0) > 120 ? blame : ''
+endfunction
+" Show grep results in quickfix window
+autocmd QuickFixCmdPost *grep* cw
+" Use tab indentation for go files
+autocmd FileType go setlocal noexpandtab
+filetype plugin indent on
+fixdel
+" Extra whitespace is bad, and should be outed
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+set autoindent
+set cuc
+set backspace=2
+set clipboard=unnamed
+set directory="~/.swaps"
+set expandtab
+set formatoptions=jcroql
+set grepprg=rg\ --vimgrep
+set hidden
+set hlsearch
+set incsearch
+set laststatus=2
+set wildmenu
+set nobackup
+set nowritebackup
+set signcolumn=number
+set number relativenumber
+set shiftwidth=2
+set si
+set smartcase
+set tabstop=2
+set wrap!
+set autoread
+" Reload .vimrc
+map <silent> ss :so ~/.vimrc<CR>
+" Open vertical split
+map <silent> ] :vsplit<CR>
+" Open horizontal split
+map <silent> [ :split<CR>
+" Navigate splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" Unhighlight selected text
+map <silent> nh :noh<CR>
+" Fuzzy find files
+map <C-p> :Files<CR>
+" Fuzzy grep
+map <C-g> :Rg<CR>
+" Fuzzy commits (for this file)
+map <C-c> :BCommits<CR>
+" Fuzzy search buffers
+map <C-b> :Buffers<CR>
+" Fuzzy search history
+map <C-s> :History<CR>
+" Fuzzy search lines in this buffer
+nmap <space> :BLines<CR>
+" Tab to toggle between buffers
 nnoremap <Tab> <C-^><CR>
-command F Files
+" Command + Space to toggle completion
+inoremap <silent><expr> <c-@> coc#refresh()
+" Show documentation for symbol under cursor
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Show CoC diagnostics
+nnoremap <silent> E :call <C-u>CocList diagnostics<cr>
+" Open current line in browser
+nnoremap <silent> L :call <C-u>CocCommand git.browserOpen<cr>
+" Go to definition
+nmap <silent> gd <Plug>(coc-definition)
+" Show type definition
+nmap <silent> gy <Plug>(coc-type-definition)
+" Show implementation
+nmap <silent> gi <Plug>(coc-implementation)
+" Show all references
+nmap <silent> gr <Plug>(coc-references)
+" Rename symbol
+nmap <silent> rn <Plug>(coc-rename)
+" Format selection
+nmap <silent> f  <Plug>(coc-format-selected)
+" Quickfix current selection
+nmap <silent> qf <Plug>(coc-fix-current)
+" Show code actions window
+nmap <silent> ac  <Plug>(coc-codeaction-selected)
+xmap <silent> ac  <Plug>(coc-codeaction-selected)
+" Everything after this line is stupid shit that CoC
+" should have built in but doesn't.
+" Stuff for K command
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute ':vertical h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+" Stuff for completion window
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+set shortmess+=c
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>" 
+
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
